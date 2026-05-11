@@ -1,30 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 
 <head>
     <meta charset="UTF-8">
-    <title>报名系统</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>活动报名</title>
+
+    <style>
+
+        body{
+            margin:0;
+            padding:0;
+            background:#f2f2f2;
+            font-family:Arial;
+        }
+
+        .container{
+            width:90%;
+            max-width:400px;
+            background:white;
+            margin:60px auto;
+            padding:30px;
+            border-radius:15px;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1{
+            text-align:center;
+            margin-bottom:30px;
+            color:#333;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-top:8px;
+            margin-bottom:20px;
+            border:1px solid #ccc;
+            border-radius:8px;
+            font-size:16px;
+            box-sizing:border-box;
+        }
+
+        button{
+            width:100%;
+            padding:12px;
+            background:#07c160;
+            color:white;
+            border:none;
+            border-radius:8px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        button:hover{
+            background:#06ad56;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-    <h1>活动报名</h1>
+    <div class="container">
 
-    <form action="/" method="POST">
+        <h1>活动报名</h1>
 
-        <p>
-            姓名：
-            <input type="text" name="name">
-        </p>
+        <form action="/" method="POST">
 
-        <p>
-            电话：
-            <input type="text" name="phone">
-        </p>
+            <label>姓名</label>
+            <input type="text" name="name" placeholder="请输入姓名">
 
-        <button type="submit">提交报名</button>
+            <label>电话</label>
+            <input type="text" name="phone" placeholder="请输入电话">
 
-    </form>
+            <button type="submit">立即报名</button>
+
+        </form>
+
+    </div>
 
 </body>
 
