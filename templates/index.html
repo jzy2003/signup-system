@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>活动报名</title>
+    <title>双人活动报名</title>
 
     <style>
 
@@ -17,9 +17,9 @@
 
         .container{
             width:90%;
-            max-width:400px;
+            max-width:500px;
             background:white;
-            margin:60px auto;
+            margin:30px auto;
             padding:30px;
             border-radius:15px;
             box-shadow:0 0 10px rgba(0,0,0,0.1);
@@ -27,24 +27,34 @@
 
         h1{
             text-align:center;
-            margin-bottom:30px;
             color:#333;
+            margin-bottom:30px;
         }
 
-        input{
+        h2{
+            margin-top:30px;
+            color:#07c160;
+        }
+
+        label{
+            display:block;
+            margin-top:10px;
+            margin-bottom:5px;
+        }
+
+        input, select{
             width:100%;
             padding:12px;
-            margin-top:8px;
-            margin-bottom:20px;
             border:1px solid #ccc;
             border-radius:8px;
             font-size:16px;
             box-sizing:border-box;
+            margin-bottom:15px;
         }
 
         button{
             width:100%;
-            padding:12px;
+            padding:14px;
             background:#07c160;
             color:white;
             border:none;
@@ -65,17 +75,54 @@
 
     <div class="container">
 
-        <h1>活动报名</h1>
+        <h1>双人活动报名</h1>
 
         <form action="/" method="POST">
 
-            <label>姓名</label>
-            <input type="text" name="name" placeholder="请输入姓名">
+            <h2>本人信息</h2>
 
-            <label>电话</label>
-            <input type="text" name="phone" placeholder="请输入电话">
+            <label>本人姓名</label>
+            <input type="text" name="name" required>
 
-            <button type="submit">立即报名</button>
+            <label>本人手机号</label>
+            <input type="text" name="phone" required>
+
+            <label>本人院系</label>
+            <input type="text" name="department">
+
+            <label>本人年级</label>
+            <input type="text" name="grade">
+
+            <label>本人校友卡号</label>
+            <input type="text" name="card_number">
+
+            <h2>搭档信息</h2>
+
+            <label>搭档姓名</label>
+            <input type="text" name="partner_name" required>
+
+            <label>搭档手机号</label>
+            <input type="text" name="partner_phone" required>
+
+            <label>搭档院系</label>
+            <input type="text" name="partner_department">
+
+            <label>搭档年级</label>
+            <input type="text" name="partner_grade">
+
+            <label>搭档校友卡号</label>
+            <input type="text" name="partner_card_number">
+
+            <h2>晚宴信息</h2>
+
+            <label>是否参加晚宴</label>
+
+            <select name="dinner">
+                <option value="参加">参加</option>
+                <option value="不参加">不参加</option>
+            </select>
+
+            <button type="submit">提交报名</button>
 
         </form>
 
