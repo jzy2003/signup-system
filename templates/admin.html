@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>后台管理</title>
+</head>
+
+<body>
+
+    <h1>报名信息后台</h1>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>姓名</th>
+            <th>电话</th>
+        </tr>
+
+        {% for user in users %}
+
+        <tr>
+            <td>{{ user.id }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.phone }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+</body>
+
+</html>
