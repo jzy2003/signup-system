@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
+import re
 
 # 创建 Flask 应用
 app = Flask(__name__)
@@ -10,6 +11,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # 初始化数据库
 db = SQLAlchemy(app)
+
 
 # 创建报名数据表
 class User(db.Model):
@@ -57,7 +59,36 @@ def home():
         # 晚宴
         dinner = request.form.get('dinner')
 
+        # =========================
+        # 数据格式验证
+        # =========================
+
+        # 手机号规则：11位数字
+        phone_pattern = r'^\d{11}$'
+
+        # 校友卡号规则：HUST + 8位数字
+        card_pattern = r'^HUST\d{8}$'
+
+        # 验证本人手机号
+        if not re.match(phone_pattern, phone):
+            return "错误：本人手机号必须是11位数字！"
+
+        # 验证搭档手机号
+        if not re.match(phone_pattern, partner_phone):
+            return "错误：搭档手机号必须是11位数字！"
+
+        # 验证本人校友卡号
+        if not re.match(card_pattern, card_number):
+            return "错误：本人校友卡号格式应为 HUST12345678"
+
+        # 验证搭档校友卡号
+        if not re.match(card_pattern, partner_card_number):
+            return "错误：搭档校友卡号格式应为 HUST12345678"
+
+        # =========================
         # 保存数据库
+        # =========================
+
         new_user = User(
             name=name,
             phone=phone,

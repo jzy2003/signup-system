@@ -1,29 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 
 <head>
     <meta charset="UTF-8">
     <title>后台管理</title>
+
+    <style>
+
+        body{
+            font-family:Arial;
+            background:#f2f2f2;
+            padding:20px;
+        }
+
+        h1{
+            text-align:center;
+        }
+
+        table{
+            width:100%;
+            border-collapse:collapse;
+            background:white;
+        }
+
+        th, td{
+            border:1px solid #ccc;
+            padding:10px;
+            text-align:center;
+            font-size:14px;
+        }
+
+        th{
+            background:#07c160;
+            color:white;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-    <h1>报名信息后台</h1>
+    <h1>报名后台数据</h1>
 
-    <table border="1">
+    <table>
 
         <tr>
-            <th>ID</th>
-            <th>姓名</th>
-            <th>电话</th>
+            <th>本人姓名</th>
+            <th>本人电话</th>
+            <th>本人院系</th>
+            <th>本人年级</th>
+            <th>本人校友卡号</th>
+
+            <th>搭档姓名</th>
+            <th>搭档电话</th>
+            <th>搭档院系</th>
+            <th>搭档年级</th>
+            <th>搭档校友卡号</th>
+
+            <th>是否参加晚宴</th>
         </tr>
 
         {% for user in users %}
 
         <tr>
-            <td>{{ user.id }}</td>
+
             <td>{{ user.name }}</td>
             <td>{{ user.phone }}</td>
+            <td>{{ user.department }}</td>
+            <td>{{ user.grade }}</td>
+            <td>{{ user.card_number }}</td>
+
+            <td>{{ user.partner_name }}</td>
+            <td>{{ user.partner_phone }}</td>
+            <td>{{ user.partner_department }}</td>
+            <td>{{ user.partner_grade }}</td>
+            <td>{{ user.partner_card_number }}</td>
+
+            <td>{{ user.dinner }}</td>
+
         </tr>
 
         {% endfor %}

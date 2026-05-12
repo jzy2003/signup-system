@@ -85,7 +85,14 @@
             <input type="text" name="name" required>
 
             <label>本人手机号</label>
-            <input type="text" name="phone" required>
+            <input
+    type="text"
+    name="phone"
+    maxlength="11"
+    pattern="\d{11}"
+    placeholder="请输入11位手机号"
+    required
+>
 
             <label>本人院系</label>
             <input type="text" name="department">
@@ -94,7 +101,13 @@
             <input type="text" name="grade">
 
             <label>本人校友卡号</label>
-            <input type="text" name="card_number">
+            <input
+    type="text"
+    name="card_number"
+    pattern="HUST\d{8}"
+    placeholder="HUST12345678"
+    required
+>
 
             <h2>搭档信息</h2>
 
@@ -102,7 +115,14 @@
             <input type="text" name="partner_name" required>
 
             <label>搭档手机号</label>
-            <input type="text" name="partner_phone" required>
+            <input
+    type="text"
+    name="partner_phone"
+    maxlength="11"
+    pattern="\d{11}"
+    placeholder="请输入11位手机号"
+    required
+>
 
             <label>搭档院系</label>
             <input type="text" name="partner_department">
@@ -111,7 +131,13 @@
             <input type="text" name="partner_grade">
 
             <label>搭档校友卡号</label>
-            <input type="text" name="partner_card_number">
+           <input
+    type="text"
+    name="partner_card_number"
+    pattern="HUST\d{8}"
+    placeholder="HUST12345678"
+    required
+>
 
             <h2>晚宴信息</h2>
 
