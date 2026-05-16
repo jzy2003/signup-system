@@ -4,49 +4,46 @@ import re
 
 app = Flask(__name__)
 
-# 数据库
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///signup.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
 
-# 数据表
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
-    # 本人
-    name = db.Column(db.String(100))
-    phone = db.Column(db.String(100))
-    department = db.Column(db.String(100))
-    grade = db.Column(db.String(100))
-    card_number = db.Column(db.String(100))
+    name = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(100), nullable=False)
+    department = db.Column(db.String(100), nullable=False)
+    grade = db.Column(db.String(100), nullable=False)
+    card_number = db.Column(db.String(100), nullable=False)
 
-    # 搭档
     partner_name = db.Column(db.String(100))
     partner_phone = db.Column(db.String(100))
     partner_department = db.Column(db.String(100))
     partner_grade = db.Column(db.String(100))
     partner_card_number = db.Column(db.String(100))
 
-    has_partner = db.Column(db.String(10))
-    dinner = db.Column(db.String(20))
+    has_partner = db.Column(db.String(10), nullable=False)
+    dinner = db.Column(db.String(20), nullable=False)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
     if request.method == 'POST':
 
+        # ======================
+        # 获取数据
+        # ======================
         has_partner = request.form.get('has_partner')
 
-        # 本人
         name = request.form.get('name')
         phone = request.form.get('phone')
         department = request.form.get('department')
         grade = request.form.get('grade')
         card_number = request.form.get('card_number')
 
-        # 搭档
         partner_name = request.form.get('partner_name')
         partner_phone = request.form.get('partner_phone')
         partner_department = request.form.get('partner_department')
@@ -55,25 +52,47 @@ def home():
 
         dinner = request.form.get('dinner')
 
-        # ====== 校验规则 ======
-        phone_pattern = r'^\d{11}$'
-        card_pattern = r'^HUST\d{8}$'
+        # ======================
+        # 1️⃣ 必填校验（核心）
+        # ======================
+        required_fields = [name, phone, department, grade, card_number, has_partner, dinner]
 
-        # 本人校验
-        if not re.match(phone_pattern, phone):
-            return "错误：手机号必须是11位数字！"
+        if any(f is None or f.strip() == "" for f in required_fields):
+            return "报名失败：所有本人信息必须填写完整"
 
-        if not re.match(card_pattern, card_number):
-            return "错误：校友卡号必须是 HUST + 8位数字"
+        # ======================
+        # 2️⃣ 手机号校验（11位）
+        # ======================
+        if not re.fullmatch(r"\d{11}", phone):
+            return "报名失败：手机号必须是11位数字"
 
-        # 双人报名才校验搭档
-        if has_partner == 'yes':
+        # ======================
+        # 3️⃣ 校友卡号校验（必须HUST开头 + 大写）
+        # ======================
+        if not re.fullmatch(r"HUST\d{8}", card_number):
+            return "报名失败：校友卡号必须以大写HUST开头 + 8位数字"
 
-            if not re.match(phone_pattern, partner_phone):
-                return "错误：搭档手机号必须是11位数字！"
+        # ======================
+        # 4️⃣ 搭档逻辑
+        # ======================
+        if has_partner == "yes":
 
-            if not re.match(card_pattern, partner_card_number):
-                return "错误：搭档校友卡号必须是 HUST + 8位数字"
+            partner_required = [
+                partner_name,
+                partner_phone,
+                partner_department,
+                partner_grade,
+                partner_card_number
+            ]
+
+            if any(f is None or f.strip() == "" for f in partner_required):
+                return "报名失败：搭档信息必须填写完整"
+
+            if not re.fullmatch(r"\d{11}", partner_phone):
+                return "报名失败：搭档手机号必须是11位数字"
+
+            if not re.fullmatch(r"HUST\d{8}", partner_card_number):
+                return "报名失败：搭档校友卡号格式错误（必须HUST+8位数字）"
 
         else:
             partner_name = None
@@ -82,7 +101,9 @@ def home():
             partner_grade = None
             partner_card_number = None
 
-        # 保存
+        # ======================
+        # 5️⃣ 保存数据库
+        # ======================
         new_user = User(
             name=name,
             phone=phone,
