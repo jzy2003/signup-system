@@ -20,9 +20,16 @@
             border-radius: 10px;
         }
 
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
         input, select {
             width: 100%;
             padding: 10px;
+            margin-top: 5px;
             margin-bottom: 10px;
         }
 
@@ -44,38 +51,69 @@
 
 <div class="container">
 
+    <h2>报名系统</h2>
+
     <form method="POST">
 
+        <label>是否有搭档</label>
         <select name="has_partner" onchange="togglePartner(this.value)">
             <option value="no">单人报名</option>
             <option value="yes">双人报名</option>
         </select>
 
-        <!-- 本人 -->
+        <hr>
+
+        <h3>本人信息</h3>
+
+        <label>姓名</label>
         <input name="name">
+
+        <label>手机号</label>
         <input name="phone">
+
+        <label>院系</label>
         <input name="department">
+
+        <label>年级</label>
         <input name="grade">
+
+        <label>校友卡号</label>
         <input name="card_number">
 
-        <!-- 搭档 -->
+        <hr>
+
+        <h3>搭档信息</h3>
+
         <div id="partner-box">
 
+            <label>搭档姓名</label>
             <input name="partner_name">
+
+            <label>搭档手机号</label>
             <input name="partner_phone">
+
+            <label>搭档院系</label>
             <input name="partner_department">
+
+            <label>搭档年级</label>
             <input name="partner_grade">
+
+            <label>搭档校友卡号</label>
             <input name="partner_card_number">
 
         </div>
 
-        <!-- 晚宴 -->
+        <hr>
+
+        <label>是否参加晚宴</label>
         <select name="dinner">
             <option value="参加">参加</option>
             <option value="不参加">不参加</option>
         </select>
 
-        <button type="submit">提交</button>
+        <br><br>
+
+        <button type="submit">提交报名</button>
 
     </form>
 
