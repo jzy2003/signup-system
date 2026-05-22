@@ -1,4 +1,4 @@
-```python
+# app.py
 from flask import Flask, render_template, request, send_file
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
@@ -32,9 +32,6 @@ class User(db.Model):
     partner_grade = db.Column(db.String(100))
     partner_card_number = db.Column(db.String(100))
 
-    # 晚宴
-    dinner = db.Column(db.String(20))
-
 
 # 首页
 @app.route('/', methods=['GET', 'POST'])
@@ -57,9 +54,6 @@ def home():
         partner_department = request.form.get('partner_department')
         partner_grade = request.form.get('partner_grade')
         partner_card_number = request.form.get('partner_card_number')
-
-        # 晚宴
-        dinner = request.form.get('dinner')
 
         # 本人手机号校验
         if not re.fullmatch(r'\d{11}', phone):
@@ -97,9 +91,7 @@ def home():
             partner_phone=partner_phone,
             partner_department=partner_department,
             partner_grade=partner_grade,
-            partner_card_number=partner_card_number,
-
-            dinner=dinner
+            partner_card_number=partner_card_number
         )
 
         db.session.add(new_user)
@@ -141,9 +133,7 @@ def export_excel():
             '搭档手机号': user.partner_phone,
             '搭档院系': user.partner_department,
             '搭档年级': user.partner_grade,
-            '搭档校友卡号': user.partner_card_number,
-
-            '是否参加晚宴': user.dinner
+            '搭档校友卡号': user.partner_card_number
         })
 
     # 生成Excel

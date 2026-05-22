@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 
@@ -16,156 +17,84 @@
             margin:0;
             padding:0;
             font-family:"Microsoft YaHei",sans-serif;
-
             background:linear-gradient(to bottom right,#eef4ff,#dbe9ff);
-
             min-height:100vh;
         }
 
         .container{
-
             width:90%;
             max-width:550px;
-
             margin:40px auto;
-
             background:white;
-
             padding:35px;
-
             border-radius:24px;
-
             box-shadow:0 8px 25px rgba(0,0,0,0.08);
         }
 
         h2{
-
             text-align:center;
-
             color:#1a2b6d;
-
             line-height:1.6;
-
             font-size:28px;
-
             margin-bottom:30px;
         }
 
         h3{
-
             color:#333;
-
             margin-top:30px;
-
             padding-left:10px;
-
             border-left:5px solid #4364F7;
         }
 
         label{
-
             display:block;
-
             margin-top:15px;
-
             margin-bottom:8px;
-
             color:#555;
-
             font-size:15px;
-
             font-weight:bold;
         }
 
         input,
         select{
-
             width:100%;
-
             height:50px;
-
             border:1px solid #dcdcdc;
-
             border-radius:14px;
-
             padding:0 15px;
-
             font-size:15px;
-
             outline:none;
-
             transition:0.2s;
-
             background:white;
         }
 
         input:focus,
         select:focus{
-
             border-color:#4364F7;
-
             box-shadow:0 0 0 4px rgba(67,100,247,0.15);
         }
 
         button{
-
             width:100%;
-
             height:52px;
-
             margin-top:35px;
-
             border:none;
-
             border-radius:14px;
-
-            background:linear-gradient(
-                135deg,
-                #0052D4,
-                #4364F7,
-                #6FB1FC
-            );
-
+            background:linear-gradient(135deg,#0052D4,#4364F7,#6FB1FC);
             color:white;
-
             font-size:18px;
-
             font-weight:bold;
-
             cursor:pointer;
-
-            transition:0.2s;
-        }
-
-        button:hover{
-
-            transform:translateY(-2px);
-
-            box-shadow:0 6px 15px rgba(67,100,247,0.3);
         }
 
         hr{
-
             border:none;
-
             border-top:1px solid #eee;
-
             margin:30px 0;
         }
 
         #partner-box{
             display:none;
-        }
-
-        .footer{
-
-            text-align:center;
-
-            margin-top:25px;
-
-            color:#888;
-
-            font-size:13px;
         }
 
     </style>
@@ -186,11 +115,8 @@
         <label>报名方式</label>
 
         <select name="has_partner" onchange="togglePartner(this.value)">
-
             <option value="no">单人报名</option>
-
             <option value="yes">双人报名</option>
-
         </select>
 
         <hr>
@@ -235,27 +161,11 @@
 
         </div>
 
-        <hr>
-
-        <label>是否参加晚宴</label>
-
-        <select name="dinner">
-
-            <option value="参加">参加</option>
-
-            <option value="不参加">不参加</option>
-
-        </select>
-
         <button type="submit">
             提交报名
         </button>
 
     </form>
-
-    <div class="footer">
-        华中科技大学武汉校友活动
-    </div>
 
 </div>
 
@@ -270,5 +180,4 @@ function togglePartner(value){
 </script>
 
 </body>
-
 </html>

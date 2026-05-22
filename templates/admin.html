@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="zh">
 
@@ -15,6 +16,20 @@
 
         h2{
             text-align:center;
+            margin-bottom:30px;
+        }
+
+        .top-btn{
+            text-align:center;
+            margin-bottom:20px;
+        }
+
+        .top-btn a{
+            background:#4364F7;
+            color:white;
+            padding:12px 20px;
+            text-decoration:none;
+            border-radius:10px;
         }
 
         table{
@@ -27,11 +42,16 @@
             border:1px solid #ddd;
             padding:12px;
             text-align:center;
+            font-size:14px;
         }
 
         th{
             background:#4364F7;
             color:white;
+        }
+
+        tr:nth-child(even){
+            background:#f9f9f9;
         }
 
     </style>
@@ -41,6 +61,10 @@
 <body>
 
 <h2>报名后台数据</h2>
+
+<div class="top-btn">
+    <a href="/export">导出Excel</a>
+</div>
 
 <table>
 
@@ -54,8 +78,9 @@
 
     <th>搭档姓名</th>
     <th>搭档手机号</th>
-
-    <th>晚宴</th>
+    <th>搭档院系</th>
+    <th>搭档年级</th>
+    <th>搭档校友卡号</th>
 
 </tr>
 
@@ -71,8 +96,9 @@
 
     <td>{{ user.partner_name }}</td>
     <td>{{ user.partner_phone }}</td>
-
-    <td>{{ user.dinner }}</td>
+    <td>{{ user.partner_department }}</td>
+    <td>{{ user.partner_grade }}</td>
+    <td>{{ user.partner_card_number }}</td>
 
 </tr>
 
@@ -81,5 +107,4 @@
 </table>
 
 </body>
-
 </html>
