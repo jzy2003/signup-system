@@ -3,17 +3,17 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>后台管理</title>
+    <title>报名后台</title>
 
     <style>
 
         body{
             font-family:Arial;
-            background:#f2f2f2;
+            background:#f5f5f5;
             padding:20px;
         }
 
-        h1{
+        h2{
             text-align:center;
         }
 
@@ -23,15 +23,14 @@
             background:white;
         }
 
-        th, td{
-            border:1px solid #ccc;
-            padding:10px;
+        th,td{
+            border:1px solid #ddd;
+            padding:12px;
             text-align:center;
-            font-size:14px;
         }
 
         th{
-            background:#07c160;
+            background:#4364F7;
             color:white;
         }
 
@@ -41,49 +40,45 @@
 
 <body>
 
-    <h1>报名后台数据</h1>
+<h2>报名后台数据</h2>
 
-    <table>
+<table>
 
-        <tr>
-            <th>本人姓名</th>
-            <th>本人电话</th>
-            <th>本人院系</th>
-            <th>本人年级</th>
-            <th>本人校友卡号</th>
+<tr>
 
-            <th>搭档姓名</th>
-            <th>搭档电话</th>
-            <th>搭档院系</th>
-            <th>搭档年级</th>
-            <th>搭档校友卡号</th>
+    <th>姓名</th>
+    <th>手机号</th>
+    <th>院系</th>
+    <th>年级</th>
+    <th>校友卡号</th>
 
-            <th>是否参加晚宴</th>
-        </tr>
+    <th>搭档姓名</th>
+    <th>搭档手机号</th>
 
-        {% for user in users %}
+    <th>晚宴</th>
 
-        <tr>
+</tr>
 
-            <td>{{ user.name }}</td>
-            <td>{{ user.phone }}</td>
-            <td>{{ user.department }}</td>
-            <td>{{ user.grade }}</td>
-            <td>{{ user.card_number }}</td>
+{% for user in users %}
 
-            <td>{{ user.partner_name }}</td>
-            <td>{{ user.partner_phone }}</td>
-            <td>{{ user.partner_department }}</td>
-            <td>{{ user.partner_grade }}</td>
-            <td>{{ user.partner_card_number }}</td>
+<tr>
 
-            <td>{{ user.dinner }}</td>
+    <td>{{ user.name }}</td>
+    <td>{{ user.phone }}</td>
+    <td>{{ user.department }}</td>
+    <td>{{ user.grade }}</td>
+    <td>{{ user.card_number }}</td>
 
-        </tr>
+    <td>{{ user.partner_name }}</td>
+    <td>{{ user.partner_phone }}</td>
 
-        {% endfor %}
+    <td>{{ user.dinner }}</td>
 
-    </table>
+</tr>
+
+{% endfor %}
+
+</table>
 
 </body>
 
