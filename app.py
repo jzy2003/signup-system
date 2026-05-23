@@ -60,8 +60,8 @@ def home():
             return '手机号必须为11位数字'
 
         # 本人校友卡号校验
-        if not re.fullmatch(r'HUST\d{8}', card_number):
-            return '校友卡号格式错误'
+        if not re.fullmatch(r'HUST\d+', card_number):
+            return '需输入完整的校友卡号'
 
         # 双人报名逻辑
         if has_partner == 'yes':
@@ -75,8 +75,8 @@ def home():
                 return '搭档手机号必须为11位数字'
 
             # 搭档校友卡号校验
-            if not re.fullmatch(r'HUST\d{8}', partner_card_number):
-                return '搭档校友卡号格式错误'
+            if not re.fullmatch(r'HUST\d+', partner_card_number):
+                return '需输入完整的搭档校友卡号'
 
         # 保存数据库
         new_user = User(
@@ -149,7 +149,6 @@ def export_excel():
 # 启动程序
 if __name__ == '__main__':
 
-    # 创建数据库
     with app.app_context():
         db.create_all()
 
