@@ -30,6 +30,7 @@
             padding:12px 20px;
             text-decoration:none;
             border-radius:10px;
+            margin:0 5px;
         }
 
         table{
@@ -52,6 +53,18 @@
 
         tr:nth-child(even){
             background:#f9f9f9;
+        }
+
+        .edit-btn{
+            color:#4364F7;
+            text-decoration:none;
+            font-weight:bold;
+        }
+
+        .delete-btn{
+            color:red;
+            text-decoration:none;
+            font-weight:bold;
         }
 
     </style>
@@ -82,6 +95,8 @@
     <th>搭档年级</th>
     <th>搭档校友卡号</th>
 
+    <th>操作</th>
+
 </tr>
 
 {% for user in users %}
@@ -100,6 +115,23 @@
     <td>{{ user.partner_grade }}</td>
     <td>{{ user.partner_card_number }}</td>
 
+    <td>
+
+        <a class="edit-btn"
+           href="/edit/{{ user.id }}">
+           编辑
+        </a>
+
+        |
+
+        <a class="delete-btn"
+           href="/delete/{{ user.id }}"
+           onclick="return confirm('确认删除该报名信息吗？')">
+           删除
+        </a>
+
+    </td>
+
 </tr>
 
 {% endfor %}
@@ -108,3 +140,4 @@
 
 </body>
 </html>
+

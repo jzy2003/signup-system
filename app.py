@@ -1,5 +1,6 @@
 # app.py
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, send_file, redirect
+
 from flask_sqlalchemy import SQLAlchemy
 import pandas as pd
 import re
@@ -109,6 +110,45 @@ def admin():
     users = User.query.all()
 
     return render_template('admin.html', users=users)
+
+# 编辑报名信息
+@app.route('/edit/<int:user_id>', methods=['GET', 'POST'])
+def edit(user_id):
+
+    user = User.query.get_or_404(user_id)
+
+    if request.method == 'POST':
+
+        user.name = request.form.get('name')
+        user.phone = request.form.get('phone')
+        user.department = request.form.get('department')
+        user.grade = request.form.get('grade')
+        user.card_number = request.form.get('card_number')
+
+        user.partner_name = request.form.get('partner_name')
+        user.partner_phone = request.form.get('partner_phone')
+        user.partner_department = request.form.get('partner_department')
+        user.partner_grade = request.form.get('partner_grade')
+        user.partner_card_number = request.form.get('partner_card_number')
+
+        db.session.commit()
+
+        return redirect('/admin')
+
+    return render_template('edit.html', user=user)
+
+
+# 删除报名信息
+@app.route('/delete/<int:user_id>')
+def delete(user_id):
+
+    user = User.query.get_or_404(user_id)
+
+    db.session.delete(user)
+
+    db.session.commit()
+
+    return redirect('/admin')
 
 
 # 导出Excel
